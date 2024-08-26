@@ -90,6 +90,10 @@ main {
     height: calc(100% / 7);
 }
 
+#grid .cell.bomb {
+    background-color: red;
+}
+
 /* footer */
 
 footer {
