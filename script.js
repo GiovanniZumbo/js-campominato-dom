@@ -91,6 +91,8 @@ function startGame(e) {
 
         // Al click:
         cell.addEventListener('click', function () {
+            let scoreMessage = `Il tuo punteggio è: ${score}.`;
+
             console.log(parseInt(cell.innerText));
 
             // Se la cella è già stata cliccata, blocco il suo comportamento
@@ -100,12 +102,16 @@ function startGame(e) {
             if (bombs.includes(i + 1)) {
                 cell.classList.add('bomb');
                 console.log('Bomba');
-                console.log(`Hai perso. Il tuo punteggio è: ${score}`)
+                console.log('Hai perso.' + ' ' + scoreMessage);
             } else {
                 // Aggiungo la classe clicked alla cella
                 cell.classList.add('clicked');
                 // Incremento il punteggio
                 scorePoints.innerText = ++score;
+
+                if (score === maxScore) {
+                    console.log('Complimenti, hai vinto!' + ' ' + scoreMessage);
+                }
             }
 
         });
@@ -154,6 +160,8 @@ Se si, la cella diventa rossa (raccogliamo il punteggio e scriviamo in console c
 
 # MILESTONE 4
 Quando l'utente clicca su una cella, e questa non è una bomba, dobbiamo controllare se il punteggio incrementato ha raggiunto il punteggio massimo, perchè in quel caso la partita termina. Raccogliamo quindi il punteggio e scriviamo un messaggio appropriato.
+
+
 # MILESTONE 5
 Quando la partita termina dobbiamo capire se è terminata perchè è stata cliccata una bomba o se perchè l'utente ha raggiunto il punteggio massimo(ossia ha vinto). Dobbiamo poi in ogni caso stampare lin pagina il punteggio raggiunto ed il messaggio adeguato in caso di vittoria o sconfitta.
 */
