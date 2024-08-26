@@ -39,7 +39,14 @@ function getRandomNumber(max, totalNumbers) {
     return randomNumbers;
 }
 
+// *Funzione di partita terminata
 
+function gameOver(score, hasLost = true) {
+
+    const finalResult = hasLost ? 'Hai perso!' : 'Complimenti hai vinto!';
+    console.log(`${finalResult} Il tuo punteggio è: ${score}.`)
+
+}
 // * Funzione per iniziare una nuova partita
 function startGame(e) {
     //# Staging
@@ -91,7 +98,6 @@ function startGame(e) {
 
         // Al click:
         cell.addEventListener('click', function () {
-            let scoreMessage = `Il tuo punteggio è: ${score}.`;
 
             console.log(parseInt(cell.innerText));
 
@@ -102,18 +108,19 @@ function startGame(e) {
             if (bombs.includes(i + 1)) {
                 cell.classList.add('bomb');
                 console.log('Bomba');
-                console.log('Hai perso.' + ' ' + scoreMessage);
+                //Il giocatore ha perso
+                gameOver(score);
+
             } else {
                 // Aggiungo la classe clicked alla cella
                 cell.classList.add('clicked');
+
                 // Incremento il punteggio
                 scorePoints.innerText = ++score;
 
-                if (score === maxScore) {
-                    console.log('Complimenti, hai vinto!' + ' ' + scoreMessage);
-                }
+                // Controlliamo se il giocatore ha vinto
+                if (score === maxScore) gameOver(score, false);
             }
-
         });
 
         grid.appendChild(cell);
