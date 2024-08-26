@@ -1,0 +1,89 @@
+/* Css reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Generics */
+
+body {
+    font-family: Montserrat, 'Helvetica Neue', sans-serif;
+}
+
+/* Utilities */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+.clicked {
+    background-color: lightblue;
+}
+
+/* Header */
+
+header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+#header-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#header-left h1 {
+    margin: 0 20px;
+}
+
+#playbtn {
+    padding: 2px 30px;
+}
+
+/* Main */
+
+main {
+    background-color: #80ffd4;
+}
+
+#grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 600px;
+    margin: 0px auto;
+}
+
+.cell {
+    flex-basis: calc(100% / 10);
+    aspect-ratio: 1;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* footer */
+
+footer {
+    height: 60px;
+    line-height: 60px;
+    padding: 0 30px;
+}
+
+.d-none {
+    display: none;
+}
