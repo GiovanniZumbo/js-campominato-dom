@@ -24,9 +24,6 @@ img {
     max-width: 100%;
 }
 
-.clicked {
-    background-color: lightblue;
-}
 
 /* Header */
 
@@ -66,14 +63,31 @@ main {
     margin: 0px auto;
 }
 
-.cell {
-    flex-basis: calc(100% / 10);
-    aspect-ratio: 1;
+#grid .cell {
     border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+#grid .cell.clicked {
+    background-color: lightblue;
+}
+
+.cell.easy {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.cell.medium {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.cell.hard {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
 }
 
 /* footer */

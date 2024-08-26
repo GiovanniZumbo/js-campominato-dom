@@ -28,30 +28,37 @@ Al click sulla cella, stampiamo il numero della cella cliccata in console, poi c
 
 // # STAGING
 
-const selectElement = document.getElementById('difficulty');
-let selectValue = selectElement.value;
-let rows;
-let cols;
-const totalCells = rows * cols;
-
-
 const grid = document.getElementById('grid');
 const playButton = document.getElementById('playbtn');
 const form = document.querySelector('form');
+const select = document.getElementById('difficulty');
 
 
-function createCell(content) {
+//@ FUNCTIONS
+
+// * Funzione per creare una cella
+function createCell(content, selectValue) {
     const cell = document.createElement('div');
-    cell.classList.add('cell');
+    cell.classList.add('cell', selectValue);
     cell.innerText = content;
+
     return cell;
 }
 
-// # DATA GATHERING
 
-// # EVENT HANDLING
+// * Funzione per iniziare una nuova partita
+function startGame(e) {
+    //# Staging
 
-selectElement.addEventListener('click', function () {
+    e.preventDefault();
+
+    grid.innerHTML = ''; // svuoto la griglia
+
+    playButton.innerText = 'Restart game'; // Cambio il testo del bottone
+
+    const selectValue = select.value;
+    let rows;
+    let cols;
 
     switch (selectValue) {
         case ('easy'):
@@ -67,29 +74,30 @@ selectElement.addEventListener('click', function () {
             cols = 7;
             break;
     }
-})
 
+    const totalCells = rows * cols;
 
-playButton.addEventListener('click', function () {
-
-    grid.innerHTML = ''; // svuoto la griglia
-    playButton.innerText = 'Restart game';
+    // Genero le celle
 
     for (let i = 0; i < totalCells; i++) {
-        const cell = createCell(i + 1);
-        grid.appendChild(cell);
 
+        const cell = createCell(i + 1, selectValue);
+
+        // Al click:
         cell.addEventListener('click', function () {
-            cell.classList.toggle('clicked');
-            console.log(i + 1);
-        })
+            console.log(parseInt(cell.innerText));
+            cell.classList.add('clicked');
+        });
+
+        grid.appendChild(cell);
     }
-})
+}
 
-form.addEventListener('submit', function () {
-    e.preventDefault;
-})
+form.addEventListener('submit', startGame);
 
+// # DATA GATHERING
+
+// # EVENT HANDLING
 
 // # PROCESSING
 
