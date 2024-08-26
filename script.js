@@ -9,7 +9,6 @@ const form = document.querySelector('form');
 const select = document.getElementById('difficulty');
 const scorePoints = document.getElementById('scorePoints');
 
-
 //@ FUNCTIONS
 
 // * Funzione per creare una cella
@@ -20,6 +19,26 @@ function createCell(content, selectValue) {
 
     return cell;
 }
+
+// * Funzione che crea un numero preciso di numeri random (che non si ripetono)
+function getRandomNumber(max, totalNumbers) {
+    const randomNumbers = [];
+
+
+    // Devo farlo per 16 volte...
+    while (randomNumbers.length < totalNumbers) {
+        // Uso la formula
+        const randomNumber = Math.floor(Math.random() * max) + 1;
+        // Controllo se è già presente nell'array
+        if (!randomNumbers.includes(randomNumber)) {
+            // ... e lo inserisco nell'array vuoto;
+            randomNumbers.push(randomNumber);
+        }
+    }
+
+    return randomNumbers;
+}
+
 
 // * Funzione per iniziare una nuova partita
 function startGame(e) {
@@ -35,6 +54,8 @@ function startGame(e) {
     let rows;
     let cols;
     let score = 0;
+    const totalBombs = 16;
+
 
     switch (selectValue) {
         case ('easy'):
@@ -52,8 +73,13 @@ function startGame(e) {
     }
 
     const totalCells = rows * cols;
+    const maxScore = totalCells - totalBombs;
 
     //# Processing
+    // Genero le celle
+
+    const bombs = getRandomNumber(totalCells, totalBombs);
+    console.log(bombs);
 
     // Genero le celle
 
@@ -64,6 +90,9 @@ function startGame(e) {
         // Al click:
         cell.addEventListener('click', function () {
             console.log(parseInt(cell.innerText));
+
+            getRandomNumber();
+            console.log(randomNumbers);
 
             if (cell.classList.contains('clicked')) return;
 
@@ -95,15 +124,20 @@ Se riusciamo, facciamo anche in modo da non poter più cliccare sulla stessa cel
 - Creo una sezione punteggio nel DOM
 - Recupero lo score dal DOM e gli do un valore = 0
 - Al click sulla cella, cambio il valore dello score (Aumento di 1)
-- Blocco la funzione sulla cella una volta cliccata creando un flag
-
-
-
+- Blocco la funzione sulla cella una volta cliccata creando un flag usando la classe
 
 
 # MILESTONE 2
 Facciamo in modo di generare 16 numeri casuali (tutti diversi) compresi tra 1 e il massimo di caselle disponibili.
 Generiamoli e stampiamo in console per essere certi che siano corretti
+
+
+- creo una funzione per generare 16 numeri random (tra 1 e totalCells)
+- Faccio in modo che siano diversi
+- Console log
+
+
+
 # MILESTONE 3
 Quando l'utente clicca su una cella, verifichiamo se ha calpestato una bomba, controllando se il numero di cella è presente nell'array di bombe.
 Se si, la cella diventa rossa (raccogliamo il punteggio e scriviamo in console che la patita termina) altrimenti diventa azzurra e dobbiamo incrementare il punteggio.
